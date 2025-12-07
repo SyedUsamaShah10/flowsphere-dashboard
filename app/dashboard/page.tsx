@@ -1,20 +1,44 @@
-// app/dashboard/page.tsx
-import { connectDB } from "@/lib/db";
-import { User } from "@/models/User";
-import { Product } from "@/models/Product";
+"use client";
+
+import { useEffect, useState } from "react";
 import DashboardClient from "@/components/DashboardClient";
 
-export default async function DashboardPage() {
-  await connectDB();
+interface OverviewData {
+  usersCount: number;
+  productsCount: number;
+  ordersCount: number;
+}
 
-  const usersCount = await User.countDocuments();
-  const productsCount = await Product.countDocuments();
+export default function DashboardPage() {
+  const [data, setData] = useState<OverviewData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const stats = [
-    { label: "Total Users", value: usersCount },
-    { label: "Total Products", value: productsCount },
-    { label: "Monthly Revenue", value: "$12,340" },
-  ];
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("/api/dashboard/overview");
+        const json = await res.json();
+        setData(json);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  const stats = data
+    ? [
+        { label: "Total Users", value: data.usersCount },
+        { label: "Total Products", value: data.productsCount },
+        { label: "Total Orders", value: data.ordersCount },
+      ]
+    : [
+        { label: "Total Users", value: "..." },
+        { label: "Total Products", value: "..." },
+        { label: "Total Orders", value: "..." },
+      ];
 
   const chartData = [
     { month: "Jan", revenue: 4000 },
@@ -25,5 +49,10 @@ export default async function DashboardPage() {
     { month: "Jun", revenue: 11000 },
   ];
 
-  return <DashboardClient stats={stats} chartData={chartData} />;
+  return (
+    <DashboardClient
+      stats={stats}
+      chartData={chartData}
+    />
+  );
 }

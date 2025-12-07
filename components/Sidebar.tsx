@@ -26,7 +26,7 @@ export default function Sidebar() {
     <div className="flex flex-col h-screen w-64 bg-slate-950 border-r border-slate-800">
       <div className="px-4 py-4 border-b border-slate-800">
         <h1 className="text-xl font-bold text-white">FlowSphere</h1>
-        <p className="text-xs text-slate-400">Next.js Dashboard</p>
+        {/* <p className="text-xs text-slate-400">Next.js Dashboard</p> */}
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-1">

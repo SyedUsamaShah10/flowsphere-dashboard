@@ -48,7 +48,7 @@ export default function LoginPage() {
         transition={{ duration: 0.25 }}
       >
         <Card className="w-full max-w-md bg-slate-900/90 border-slate-700 text-white p-6">
-          <h1 className="text-2xl font-bold mb-2 text-center">SaaSify Admin</h1>
+          <h1 className="text-2xl font-bold mb-2 text-center">FlowSphere</h1>
           <p className="text-sm text-slate-300 mb-6 text-center">
             Demo login: <span className="font-mono">admin@example.com</span> /{" "}
             <span className="font-mono">admin123</span>

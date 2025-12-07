@@ -65,7 +65,7 @@ export default function RegisterPage() {
             Create account
           </h1>
           <p className="text-sm text-slate-300 mb-6 text-center">
-            Sign up to access the SaaSify Admin dashboard.
+            Sign up to access the FlowSphere dashboard.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">

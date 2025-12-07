@@ -2,7 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 
 export const metadata = {
-  title: "Dashboard | SaaSify Admin",
+  title: "Dashboard | FlowSphere",
 };
 
 export default function DashboardLayout({
